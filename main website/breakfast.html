@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dish Form</title>
+  <style>
+    body {
+      background-color: orange;
+      padding: 20px;
+      margin: 0;
+    }
+    
+    h1 {
+      color: rgb(31, 29, 29);
+    }
+    
+    .form-container {
+      width: 400px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 50px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: orange;
+    }
+    
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid orange;
+      border-radius: 5px;
+    }
+    
+    .submit-btn {
+      background-color: orange;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .add-image-link {
+      color: orange;
+      text-decoration: none;
+      font-size: 14px;
+      margin-top: 5px;
+      display: block;
+    }
+    
+    .preview-image {
+      max-width: 100%;
+      margin-top: 10px;
+      border: 1px solid orange;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body background="assets/images/dish4.webp">
+  <div class="form-container">
+    <h1>Add Breakfast</h1>
+    <form id="dish-form">
+      <div class="form-group">
+        <label for="dish-name">Dish Name:</label>
+        <input type="text" id="dish-name" name="dish-name" required>
+      </div>
+      <div class="form-group">
+        <label for="dish-price">Dish Price:</label>
+        <input type="text" id="dish-price" name="dish-price" required>
+      </div>
+      <div class="form-group">
+        <label for="dish-image">Dish Image:</label>
+        <input type="file" id="dish-image" name="dish-image" accept="image/*" required>
+        <img id="preview" class="preview-image" src="#" alt="Preview Image" style="display: none;">
+        <a href="#" class="add-image-link">Add Image</a>
+      </div>
+      <div class="form-group">
+        <label for="dish-type">Dish Type:</label>
+        <select id="dish-type" name="dish-type" required>
+          <option value="">Select Type</option>
+          <option value="veg">Vegetarian</option>
+          <option value="non-veg">Non-Vegetarian</option>
+        </select>
+      </div>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+  
+
+  <script>
+    document.getElementById("dish-image").addEventListener("change", function(event) {
+      var input = event.target;
+      var reader = new FileReader();
+
+      reader.onload = function(){
+        var image = document.getElementById("preview");
+        image.src = reader.result;
+        image.style.display = "block";
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    });
+
+    document.getElementById("dish-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+      alert("Thank You!");
+      window.location.href = "thankyou.html"; // Redirect to the thank you page
+    });
+  </script>
+</body>
+</html>
